@@ -1,0 +1,5 @@
+<?php
+
+return [
+    'address' => env('LARAVEL_ECHO_SERVER_ADDRESS', 'http://localhost:6001/'),
+];
