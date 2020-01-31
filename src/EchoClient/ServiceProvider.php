@@ -14,13 +14,23 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->publishes([
-            __DIR__ . '/../config/echo-client.php' => config_path('echo-client.php'),
-        ], self::NAME);
+        $this->mergeConfigFrom(__DIR__ . '/../config/echo-client.php', 'echo-client');
 
         $this->app->singleton('echo-client', function ($app) {
             return new Client;
         });
+    }
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/../config/echo-client.php' => config_path('echo-client.php'),
+        ], self::NAME);
     }
 
     /**
